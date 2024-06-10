@@ -29,7 +29,7 @@ func GetWaterTankLevel(c *gin.Context) {
 		SELECT *
 		FROM ranked_data
 		WHERE row_num = 1
-		ORDER BY time DESC;
+		ORDER BY "nodeName" ASC;
 	`
 
 	iterator, err := influxDB.Query(context.Background(), query) // Create iterator from query response
@@ -69,14 +69,14 @@ func GetHydrometer(c *gin.Context) {
 	query := `
 		WITH ranked_data AS (
 			SELECT *,
-				ROW_NUMBER() OVER (PARTITION BY "nodeName" ORDER BY time DESC) AS row_num
+			ROW_NUMBER() OVER (PARTITION BY "nodeName" ORDER BY time DESC) AS row_num
 			FROM "Hidrometer"
 			WHERE time >= now() - interval '1 hour'
 		)
 		SELECT *
 		FROM ranked_data
 		WHERE row_num = 1
-		ORDER BY time DESC;
+		ORDER BY "nodeName" ASC;
 	`
 
 	iterator, err := influxDB.Query(context.Background(), query) // Create iterator from query response
@@ -116,14 +116,14 @@ func GetArtesianWell(c *gin.Context) {
 	query := `
 		WITH ranked_data AS (
 			SELECT *,
-				ROW_NUMBER() OVER (PARTITION BY "nodeName" ORDER BY time DESC) AS row_num
+			ROW_NUMBER() OVER (PARTITION BY "nodeName" ORDER BY time DESC) AS row_num
 			FROM "ArtesianWell"
 			WHERE time >= now() - interval '1 hour'
 		)
 		SELECT *
 		FROM ranked_data
 		WHERE row_num = 1
-		ORDER BY time DESC;
+		ORDER BY "nodeName" ASC;
 	`
 
 	iterator, err := influxDB.Query(context.Background(), query) // Create iterator from query response
