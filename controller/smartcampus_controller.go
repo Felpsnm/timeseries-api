@@ -20,11 +20,15 @@ func GetWaterTankLevel(c *gin.Context) {
 	defer influxDB.Close()
 
 	query := `
+		WITH ranked_data AS (
+			SELECT *,
+				ROW_NUMBER() OVER (PARTITION BY "nodeName" ORDER BY time DESC) AS row_num
+			FROM "WaterTankLavel"
+			WHERE time >= now() - interval '1 hour'
+		)
 		SELECT *
-		FROM "WaterTankLavel"
-		WHERE
-		time >= now() - interval '1 hour'
-		QUALIFY ROW_NUMBER() OVER (PARTITION BY nodeName, type ORDER BY date DESC) = 1;
+		FROM ranked_data
+		WHERE row_num = 1
 		ORDER BY time DESC;
 	`
 
@@ -38,10 +42,10 @@ func GetWaterTankLevel(c *gin.Context) {
 		value := iterator.Value() // Value of the current row
 		obj := gin.H{
 			"fields": gin.H{
-				"data_distance":                value["data_distance"],
+				"data_distance": value["data_distance"],
 			},
 			"tags": gin.H{
-				"nodeName":                   value["nodeName"],
+				"nodeName": value["nodeName"],
 			},
 			"timestamp": value["time"],
 		}
@@ -63,10 +67,15 @@ func GetHydrometer(c *gin.Context) {
 	defer influxDB.Close()
 
 	query := `
+		WITH ranked_data AS (
+			SELECT *,
+				ROW_NUMBER() OVER (PARTITION BY "nodeName" ORDER BY time DESC) AS row_num
+			FROM "Hidrometer"
+			WHERE time >= now() - interval '1 hour'
+		)
 		SELECT *
-		FROM "Hidrometer"
-		WHERE
-		time >= now() - interval '1 hour'
+		FROM ranked_data
+		WHERE row_num = 1
 		ORDER BY time DESC;
 	`
 
@@ -80,10 +89,10 @@ func GetHydrometer(c *gin.Context) {
 		value := iterator.Value() // Value of the current row
 		obj := gin.H{
 			"fields": gin.H{
-				"data_counter":                 value["data_counter"],
+				"data_counter": value["data_counter"],
 			},
 			"tags": gin.H{
-				"nodeName":                   value["nodeName"],
+				"nodeName": value["nodeName"],
 			},
 			"timestamp": value["time"],
 		}
@@ -105,10 +114,15 @@ func GetArtesianWell(c *gin.Context) {
 	defer influxDB.Close()
 
 	query := `
+		WITH ranked_data AS (
+			SELECT *,
+				ROW_NUMBER() OVER (PARTITION BY "nodeName" ORDER BY time DESC) AS row_num
+			FROM "ArtesianWell"
+			WHERE time >= now() - interval '1 hour'
+		)
 		SELECT *
-		FROM "ArtesianWell"
-		WHERE
-		time >= now() - interval '1 hour'
+		FROM ranked_data
+		WHERE row_num = 1
 		ORDER BY time DESC;
 	`
 
@@ -122,11 +136,11 @@ func GetArtesianWell(c *gin.Context) {
 		value := iterator.Value() // Value of the current row
 		obj := gin.H{
 			"fields": gin.H{
-				"data_pressure_0":              value["data_pressure_0"],
-				"data_pressure_1":              value["data_pressure_1"],
+				"data_pressure_0": value["data_pressure_0"],
+				"data_pressure_1": value["data_pressure_1"],
 			},
 			"tags": gin.H{
-				"nodeName":                   value["nodeName"],
+				"nodeName": value["nodeName"],
 			},
 			"timestamp": value["time"],
 		}
