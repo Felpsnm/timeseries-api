@@ -37,35 +37,9 @@ func GetWaterTankLevel(c *gin.Context) {
 		value := iterator.Value() // Value of the current row
 		obj := gin.H{
 			"fields": gin.H{
-				"data_boardVoltage":            value["data_boardVoltage"],
-				"fCnt":                         value["fCnt"],
-				"rxInfo_altitude_0":            value["rxInfo_altitude_0"],
-				"rxInfo_altitude_1":            value["rxInfo_altitude_1"],
-				"rxInfo_latitude_0":            value["rxInfo_latitude_0"],
-				"rxInfo_latitude_1":            value["rxInfo_latitude_1"],
-				"rxInfo_longitude_0":           value["rxInfo_longitude_0"],
-				"rxInfo_longitude_1":           value["rxInfo_longitude_1"],
-				"rxInfo_loRaSNR_0":             value["rxInfo_loRaSNR_0"],
-				"rxInfo_loRaSNR_1":             value["rxInfo_loRaSNR_1"],
-				"rxInfo_rssi_0":                value["rxInfo_rssi_0"],
-				"rxInfo_rssi_1":                value["rxInfo_rssi_1"],
-				"txInfo_dataRate_spreadFactor": value["txInfo_dataRate_spreadFactor"],
-				"txInfo_frequency":             value["txInfo_frequency"],
 				"data_distance":                value["data_distance"],
-			},
-			"name": "WaterTankLavel",
 			"tags": gin.H{
-
-				"applicationID":              value["applicationID"],
-				"devEUI":                     value["devEUI"],
-				"fPort":                      value["fPort"],
 				"nodeName":                   value["nodeName"],
-				"rxInfo_mac_0":               value["rxInfo_mac_0"],
-				"rxInfo_name_0":              value["rxInfo_name_0"],
-				"txInfo_adr":                 "true",
-				"txInfo_codeRate":            "4/5",
-				"txInfo_dataRate_bandwidth":  "125",
-				"txInfo_dataRate_modulation": "LORA",
 			},
 			"timestamp": value["time"],
 		}
@@ -104,35 +78,10 @@ func GetHydrometer(c *gin.Context) {
 		value := iterator.Value() // Value of the current row
 		obj := gin.H{
 			"fields": gin.H{
-				"data_boardVoltage":            value["data_boardVoltage"],
-				"fCnt":                         value["fCnt"],
-				"rxInfo_altitude_0":            value["rxInfo_altitude_0"],
-				"rxInfo_altitude_1":            value["rxInfo_altitude_1"],
-				"rxInfo_latitude_0":            value["rxInfo_latitude_0"],
-				"rxInfo_latitude_1":            value["rxInfo_latitude_1"],
-				"rxInfo_longitude_0":           value["rxInfo_longitude_0"],
-				"rxInfo_longitude_1":           value["rxInfo_longitude_1"],
-				"rxInfo_loRaSNR_0":             value["rxInfo_loRaSNR_0"],
-				"rxInfo_loRaSNR_1":             value["rxInfo_loRaSNR_1"],
-				"rxInfo_rssi_0":                value["rxInfo_rssi_0"],
-				"rxInfo_rssi_1":                value["rxInfo_rssi_1"],
-				"txInfo_dataRate_spreadFactor": value["txInfo_dataRate_spreadFactor"],
-				"txInfo_frequency":             value["txInfo_frequency"],
 				"data_counter":                 value["data_counter"],
 			},
-			"name": "Hydrometer",
 			"tags": gin.H{
-
-				"applicationID":              value["applicationID"],
-				"devEUI":                     value["devEUI"],
-				"fPort":                      value["fPort"],
 				"nodeName":                   value["nodeName"],
-				"rxInfo_mac_0":               value["rxInfo_mac_0"],
-				"rxInfo_name_0":              value["rxInfo_name_0"],
-				"txInfo_adr":                 "true",
-				"txInfo_codeRate":            "4/5",
-				"txInfo_dataRate_bandwidth":  "125",
-				"txInfo_dataRate_modulation": "LORA",
 			},
 			"timestamp": value["time"],
 		}
@@ -171,36 +120,12 @@ func GetArtesianWell(c *gin.Context) {
 		value := iterator.Value() // Value of the current row
 		obj := gin.H{
 			"fields": gin.H{
-				"data_boardVoltage":            value["data_boardVoltage"],
-				"fCnt":                         value["fCnt"],
-				"rxInfo_altitude_0":            value["rxInfo_altitude_0"],
-				"rxInfo_altitude_1":            value["rxInfo_altitude_1"],
-				"rxInfo_latitude_0":            value["rxInfo_latitude_0"],
-				"rxInfo_latitude_1":            value["rxInfo_latitude_1"],
-				"rxInfo_longitude_0":           value["rxInfo_longitude_0"],
-				"rxInfo_longitude_1":           value["rxInfo_longitude_1"],
-				"rxInfo_loRaSNR_0":             value["rxInfo_loRaSNR_0"],
-				"rxInfo_loRaSNR_1":             value["rxInfo_loRaSNR_1"],
-				"rxInfo_rssi_0":                value["rxInfo_rssi_0"],
-				"rxInfo_rssi_1":                value["rxInfo_rssi_1"],
-				"txInfo_dataRate_spreadFactor": value["txInfo_dataRate_spreadFactor"],
-				"txInfo_frequency":             value["txInfo_frequency"],
 				"data_pressure_0":              value["data_pressure_0"],
 				"data_pressure_1":              value["data_pressure_1"],
 			},
 			"name": "ArtesianWell",
 			"tags": gin.H{
-
-				"applicationID":              value["applicationID"],
-				"devEUI":                     value["devEUI"],
-				"fPort":                      value["fPort"],
 				"nodeName":                   value["nodeName"],
-				"rxInfo_mac_0":               value["rxInfo_mac_0"],
-				"rxInfo_name_0":              value["rxInfo_name_0"],
-				"txInfo_adr":                 "true",
-				"txInfo_codeRate":            "4/5",
-				"txInfo_dataRate_bandwidth":  "125",
-				"txInfo_dataRate_modulation": "LORA",
 			},
 			"timestamp": value["time"],
 		}
