@@ -24,6 +24,7 @@ func GetWaterTankLevel(c *gin.Context) {
 		FROM "WaterTankLavel"
 		WHERE
 		time >= now() - interval '1 hour'
+		QUALIFY ROW_NUMBER() OVER (PARTITION BY nodeName, type ORDER BY date DESC) = 1;
 		ORDER BY time DESC;
 	`
 
