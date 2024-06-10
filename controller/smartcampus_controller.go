@@ -38,7 +38,7 @@ func GetWaterTankLevel(c *gin.Context) {
 		obj := gin.H{
 			"fields": gin.H{
 				"data_distance":                value["data_distance"],
-			}
+			},
 			"tags": gin.H{
 				"nodeName":                   value["nodeName"],
 			},
